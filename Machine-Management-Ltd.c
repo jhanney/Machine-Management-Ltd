@@ -10,6 +10,7 @@ void main()
 	printf("   MACHINERY MANAGEMENT FLEET SYSTEM\n");
 	printf("=========================================\n");
 
+    //main menu
 	do {
         printf("\nMAIN MENU:\n");
         printf("1) Add machine\n");
@@ -24,5 +25,55 @@ void main()
         printf("\nEnter your choice: ");
 
         scanf("%d", &choice);
-    } while (choice != 0); 
+
+        // Process menu choice
+        switch (choice) {
+        case 1:
+            printf("\nAdd machine selected\n");
+            //implement addMachine() function here
+            break;
+
+        case 2:
+            printf("\nDisplay all machines selected\n");
+            //implement displayAllMachines() function here
+            break;
+
+        case 3:
+            printf("\nDisplay machine details selected\n");
+            //implement displayMachineDetails() function here
+            break;
+
+        case 4:
+            printf("\nUpdate machine selected\n");
+            //implement updateMachine() function here
+            break;
+
+        case 5:
+            printf("\nDelete machine selected\n");
+            //implement deleteMachine() function here
+            break;
+
+        case 6:
+            printf("\nGenerate statistics selected\n");
+            //implement generateStatistics() function here
+            break;
+
+        case 7:
+            printf("\nPrint report selected\n");
+            //implement printReport() function here
+            break;
+
+        case 8:
+            printf("\nSort by valuation selected\n");
+            //implement sortByValuation() function here
+            break;
+
+        case 0:
+            printf("\nExiting program. Goodbye!\n");
+            break;
+
+        default:
+            printf("\nInvalid choice. Please try again.\n");
+        }
+    } while (choice != 0); //loops until 0 selected
 }
