@@ -3,7 +3,7 @@
 #include<stdlib.h>
 
 //machine struct
-struct Machine {
+typedef struct node {
     char chassisNumber[20];  //unique chassis number
     char make[30];
     char model[30];
@@ -18,7 +18,15 @@ struct Machine {
     char machineType[20]; // e.g., Tractor, Excavator
     int breakdownsThisYear;
     struct Machine* next;  //pointer to the next machine in the list
-};
+}Machine;
+
+//functiion to add new machine 
+void addMachine(Machine** head) {
+    Machine* newMachine = (Machine*)malloc(sizeof(Machine)); //create space for new machine
+
+    printf("Enter chasis number: ");
+    scanf("%s", newMachine->chassisNumber); 
+}
 
 void main()
 {
@@ -98,6 +106,3 @@ void main()
     return 0;
 }
 
-void addMachine() {
-
-}
