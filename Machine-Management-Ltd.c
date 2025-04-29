@@ -52,11 +52,28 @@ void addMachine(Machine** head) {
     scanf("%f", &newMachine->currentValuation);
     printf("Enter current mileage: ");
     scanf("%d", &newMachine->currentMileage);
+    printf("Enter next service mileage: ");
+    scanf("%d", &newMachine->nextServiceMileage);
+    printf("Enter owner name: ");
+    scanf("%s", newMachine->ownerName);
+    printf("Enter owner email: ");
+    scanf("%s", newMachine->ownerEmail);
+    printf("Enter owner phone number: ");
+    scanf("%s", newMachine->ownerPhoneNumber);
+    printf("Enter machine type (e.g., Tractor): ");
+    scanf("%s", newMachine->machineType);
+    printf("Enter breakdown count this year: ");
+    scanf("%d", &newMachine->breakdownsThisYear);
+
+    //insert new machine at begginning 
+    newMachine->next = *head; 
+    *head = newMachine; 
 }
 
 void main()
 {
 	int choice = 0; 
+    Machine* head = NULL; 
 
 	printf("\n=========================================\n");
 	printf("   MACHINERY MANAGEMENT FLEET SYSTEM\n");
@@ -82,7 +99,7 @@ void main()
         switch (choice) {
         case 1:
             printf("\nAdd machine selected\n");
-            //implement addMachine() function here
+            addMachine(&head); 
             break;
 
         case 2:
