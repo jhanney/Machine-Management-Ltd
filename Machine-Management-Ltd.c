@@ -70,6 +70,26 @@ void addMachine(Machine** head) {
     *head = newMachine; 
 }
 
+void displayAll(Machine* head) {
+    Machine* temp = head; 
+    while (temp != NULL) {
+        printf("\nChassis Number: %s\n", temp->chassisNumber);
+        printf("Make: %s\n", temp->make);
+        printf("Model: %s\n", temp->model);
+        printf("Year: %d\n", temp->yearOfManufacture);
+        printf("Cost: %.2f\n", temp->cost);
+        printf("Current Valuation: %.2f\n", temp->currentValuation);
+        printf("Current Mileage: %d\n", temp->currentMileage);
+        printf("Next Service Mileage: %d\n", temp->nextServiceMileage);
+        printf("Owner: %s\n", temp->ownerName);
+        printf("Owner Email: %s\n", temp->ownerEmail);
+        printf("Owner Phone: %s\n", temp->ownerPhoneNumber);
+        printf("Machine Type: %s\n", temp->machineType);
+        printf("Breakdowns This Year: %d\n", temp->breakdownsThisYear);
+        temp = temp->next;
+    }
+}
+
 void main()
 {
 	int choice = 0; 
@@ -104,7 +124,7 @@ void main()
 
         case 2:
             printf("\nDisplay all machines selected\n");
-            //implement displayAllMachines() function here
+            displayAll(head); 
             break;
 
         case 3:
