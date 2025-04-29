@@ -98,7 +98,40 @@ void updateMachine(Machine* head) {
     printf("ENter the chassis number of the machine to update: ");
     scanf("%s", chassis); 
 
-    Machine* temp = head; 
+    Machine* temp = head; //node to traverse the linked list
+
+    //traverse list to find match
+    while (temp != NULL) {
+        if (strcmp(temp->chassisNumber, chassis) == 0) {
+            //allow details to be updated if match found 
+            printf("Enter make: ");
+            scanf("%s", temp->make);
+            printf("Enter model: ");
+            scanf("%s", temp->model);
+            printf("Enter year of manufacture: ");
+            scanf("%d", &temp->yearOfManufacture);
+            printf("Enter cost: ");
+            scanf("%f", &temp->cost);
+            printf("Enter current valuation: ");
+            scanf("%f", &temp->currentValuation);
+            printf("Enter current mileage: ");
+            scanf("%d", &temp->currentMileage);
+            printf("Enter next service mileage: ");
+            scanf("%d", &temp->nextServiceMileage);
+            printf("Enter owner name: ");
+            scanf("%s", temp->ownerName);
+            printf("Enter owner email: ");
+            scanf("%s", temp->ownerEmail);
+            printf("Enter owner phone number: ");
+            scanf("%s", temp->ownerPhoneNumber);
+            printf("Enter machine type (e.g., Tractor): ");
+            scanf("%s", temp->machineType);
+            printf("Enter breakdown count this year: ");
+            scanf("%d", &temp->breakdownsThisYear);
+
+            return; 
+        }
+    }
 }
 
 void main()
