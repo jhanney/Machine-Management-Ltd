@@ -70,8 +70,9 @@ void addMachine(Machine** head) {
     *head = newMachine; 
 }
 
+//method to display all machines 
 void displayAll(Machine* head) {
-    Machine* temp = head; 
+    Machine* temp = head; //create temmp node at beginning 
     while (temp != NULL) {
         printf("\nChassis Number: %s\n", temp->chassisNumber);
         printf("Make: %s\n", temp->make);
@@ -88,6 +89,16 @@ void displayAll(Machine* head) {
         printf("Breakdowns This Year: %d\n", temp->breakdownsThisYear);
         temp = temp->next;
     }
+}
+
+//update the details of a machine
+void updateMachine(Machine* head) {
+    char chassis[20]; //chassis number to be compared
+
+    printf("ENter the chassis number of the machine to update: ");
+    scanf("%s", chassis); 
+
+    Machine* temp = head; 
 }
 
 void main()
