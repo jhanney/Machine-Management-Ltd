@@ -2,6 +2,24 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+//machine struct
+struct Machine {
+    char chassisNumber[20];  //unique chassis number
+    char make[30];
+    char model[30];
+    int yearOfManufacture;
+    float cost;
+    float currentValuation;
+    int currentMileage;
+    int nextServiceMileage;
+    char ownerName[50];
+    char ownerEmail[50];
+    char ownerPhoneNumber[20];
+    char machineType[20]; // e.g., Tractor, Excavator
+    int breakdownsThisYear;
+    struct Machine* next;  //pointer to the next machine in the list
+};
+
 void main()
 {
 	int choice = 0; 
@@ -76,4 +94,10 @@ void main()
             printf("\nInvalid choice. Please try again.\n");
         }
     } while (choice != 0); //loops until 0 selected
+
+    return 0;
+}
+
+void addMachine() {
+
 }
