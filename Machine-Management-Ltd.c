@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS 
 #include<stdio.h>
 #include<stdlib.h>
+#include <string.h>
 
 //machine struct
 typedef struct node {
@@ -26,6 +27,17 @@ void addMachine(Machine** head) {
 
     printf("Enter chasis number: ");
     scanf("%s", newMachine->chassisNumber); 
+
+    //identify if chasis number is unique
+    Machine* tmp = *head; 
+    while (tmp != NULL) {
+        if (strcmp(tmp->chassisNumber, newMachine->chassisNumber) == 0) {
+            printf("ERROR: Chasis number must be unique");
+            free(newMachine); //free memeory
+            return; 
+        }
+        tmp = tmp->next; 
+    }
 }
 
 void main()
