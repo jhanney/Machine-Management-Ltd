@@ -38,6 +38,20 @@ void addMachine(Machine** head) {
         }
         tmp = tmp->next; 
     }
+
+    //collect the rest of the machine data
+    printf("Enter make: ");
+    scanf("%s", newMachine->make);
+    printf("Enter model: ");
+    scanf("%s", newMachine->model);
+    printf("Enter year of manufacture: ");
+    scanf("%d", &newMachine->yearOfManufacture);
+    printf("Enter cost: ");
+    scanf("%f", &newMachine->cost);
+    printf("Enter current valuation: ");
+    scanf("%f", &newMachine->currentValuation);
+    printf("Enter current mileage: ");
+    scanf("%d", &newMachine->currentMileage);
 }
 
 void main()
