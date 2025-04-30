@@ -139,6 +139,16 @@ void updateMachine(Machine* head) {
 
 void deleteMachine(Machine** head, char* chassis) {
     char chasisToDelete[20]; 
+    Machine* temp = *head; 
+
+    printf("Enter the chasis number to delete: ");
+    scanf("%s", chasisToDelete); 
+
+    //check if list is empty
+    if (*head == NULL) {
+        printf("The machine list is empty.\n");
+        return; 
+    }
 }
 
 void main()
