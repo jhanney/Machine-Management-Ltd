@@ -3,8 +3,12 @@
 #include<stdlib.h>
 #include <string.h>
 
+//forward declarartion, i was getting an identifier error 2061
+//only resolved when i did this
+typedef struct Machine Machine;
+
 //machine struct
-typedef struct node {
+ struct Machine{
     char chassisNumber[20];  //unique chassis number
     char make[30];
     char model[30];
@@ -20,7 +24,7 @@ typedef struct node {
     int breakdownsThisYear;
     Machine* next;  //pointer to the next machine in the list
     Machine* prev; //points to previous machine in the list 
-}Machine;
+};
 
 //functiion to add new machine 
 void addMachine(Machine** head) {
@@ -137,7 +141,8 @@ void updateMachine(Machine* head) {
     printf("Machine with chassis number %s not found!!\n", chassis); 
 }
 
-void deleteMachine(Machine** head, char* chassis) {
+void deleteMachine(Machine** head) 
+{
     char chasisToDelete[20]; 
     Machine* temp = *head; 
 
@@ -149,6 +154,37 @@ void deleteMachine(Machine** head, char* chassis) {
         printf("The machine list is empty.\n");
         return; 
     }
+
+    //traverse list to find machine with matching chassis number
+    while (temp != NULL) {
+        //if matching chassis number is found
+        if (strcmp(temp->chassisNumber, chasisToDelete) == 0) {
+            //if the node to delete is the head
+            if (temp == *head) {
+                *head = temp->next; //move head node to the next node
+                if (*head != NULL) {
+                    (*head)->prev = NULL; //set prev pointer of head to NULL
+                }
+            }
+            else {  //if node to delete is not the head
+                if (temp->prev != NULL) {
+                    temp->prev->next = temp->next;//link prev node to next node 
+                }
+                //link next node to prev node
+                if (temp->next != NULL) {
+                    temp->next->prev = temp->prev;
+                }
+            }
+            free(temp); //free the memory
+            printf("Machine with chassis number %s has been deleted.\n", chasisToDelete);
+            return;
+        }
+
+        temp = temp->next;
+    }
+
+    //id machine not found 
+    printf("Error: Machine with chassis number %s not found.\n", chasisToDelete);
 }
 
 void main()
@@ -161,7 +197,7 @@ void main()
 	printf("=========================================\n");
 
     //main menu
-	do {
+    do {
         printf("\nMAIN MENU:\n");
         printf("1) Add machine\n");
         printf("2) Display all machines to screen\n");
@@ -180,12 +216,12 @@ void main()
         switch (choice) {
         case 1:
             printf("\nAdd machine selected\n");
-            addMachine(&head); 
+            addMachine(&head);
             break;
 
         case 2:
             printf("\nDisplay all machines selected\n");
-            displayAll(head); 
+            displayAll(head);
             break;
 
         case 3:
@@ -195,12 +231,12 @@ void main()
 
         case 4:
             printf("\nUpdate machine selected\n");
-            updateMachine(head); 
+            updateMachine(head);
             break;
 
         case 5:
             printf("\nDelete machine selected\n");
-            //implement deleteMachine() function here
+            deleteMachine(&head); 
             break;
 
         case 6:
@@ -225,8 +261,11 @@ void main()
         default:
             printf("\nInvalid choice. Please try again.\n");
         }
+    
     } while (choice != 0); //loops until 0 selected
 
     return 0;
+    
 }
+
 
