@@ -18,7 +18,8 @@ typedef struct node {
     char ownerPhoneNumber[20];
     char machineType[20]; // e.g., Tractor, Excavator
     int breakdownsThisYear;
-    struct Machine* next;  //pointer to the next machine in the list
+    Machine* next;  //pointer to the next machine in the list
+    Machine* prev; //points to previous machine in the list 
 }Machine;
 
 //functiion to add new machine 
@@ -104,34 +105,40 @@ void updateMachine(Machine* head) {
     while (temp != NULL) {
         if (strcmp(temp->chassisNumber, chassis) == 0) {
             //allow details to be updated if match found 
-            printf("Enter make: ");
+            printf("Enter new make: ");
             scanf("%s", temp->make);
-            printf("Enter model: ");
+            printf("Enter new model: ");
             scanf("%s", temp->model);
-            printf("Enter year of manufacture: ");
+            printf("Enter new year of manufacture: ");
             scanf("%d", &temp->yearOfManufacture);
-            printf("Enter cost: ");
+            printf("Enter new cost: ");
             scanf("%f", &temp->cost);
-            printf("Enter current valuation: ");
+            printf("Enter new valuation: ");
             scanf("%f", &temp->currentValuation);
-            printf("Enter current mileage: ");
+            printf("Enter new mileage: ");
             scanf("%d", &temp->currentMileage);
-            printf("Enter next service mileage: ");
+            printf("Enter new next service mileage: ");
             scanf("%d", &temp->nextServiceMileage);
-            printf("Enter owner name: ");
+            printf("Enter new owner name: ");
             scanf("%s", temp->ownerName);
-            printf("Enter owner email: ");
+            printf("Enter new owner email: ");
             scanf("%s", temp->ownerEmail);
-            printf("Enter owner phone number: ");
+            printf("Enter new owner phone number: ");
             scanf("%s", temp->ownerPhoneNumber);
-            printf("Enter machine type (e.g., Tractor): ");
+            printf("Enter new machine type (e.g., Tractor): ");
             scanf("%s", temp->machineType);
-            printf("Enter breakdown count this year: ");
+            printf("Enter new breakdown count this year: ");
             scanf("%d", &temp->breakdownsThisYear);
 
             return; 
         }
+        temp = temp->next; //traverse to next node 
     }
+    printf("Machine with chassis number %s not found!!\n", chassis); 
+}
+
+void deleteMachine(Machine** head, char* chassis) {
+    char chasisToDelete[20]; 
 }
 
 void main()
@@ -178,7 +185,7 @@ void main()
 
         case 4:
             printf("\nUpdate machine selected\n");
-            //implement updateMachine() function here
+            updateMachine(head); 
             break;
 
         case 5:
