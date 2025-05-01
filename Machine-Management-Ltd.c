@@ -98,7 +98,7 @@ void addMachine(Machine** head) {
 
     //breakdown frequency 
     printf("Enter breakdown count this year: ");
-    scanf("%d", &newMachine->breakdownsThisYear);
+   /* scanf("%d", &newMachine->breakdownsThisYear);*/
     printf("1) Never\n2) Less than three times\n3) Less than five times\n4) More than five times\n");
     int breakdownChoice;
     printf("Enter your choice (1-4): ");
@@ -320,7 +320,48 @@ void generateStatistics(Machine* head) {
         temp = temp->next; //move to the next machine in the list
     }
 
+    //print statistics for each machine type
+    printf("\n=== Machinery Statistics Based on Machine Type ===\n");
 
+    //tractor statistcis 
+    if (totalTractors > 0) {
+        printf("\nTractors: %d\n", totalTractors);
+        printf("Tractors with no breakdowns: %d\n", noBreakdownsTractors);
+        printf("Percentage of Tractors with no breakdowns: %.2f%%\n",
+            (float)noBreakdownsTractors / totalTractors * 100);
+    }
+
+    //excavator statistics
+    if (totalExcavators > 0) {
+        printf("\nExcavators: %d\n", totalExcavators);
+        printf("Excavators with no breakdowns: %d\n", noBreakdownsExcavators);
+        printf("Percentage of Excavators with no breakdowns: %.2f%%\n",
+            (float)noBreakdownsExcavators / totalExcavators * 100);
+    }
+
+    //Roller statistics
+    if (totalRollers > 0) {
+        printf("\nRollers: %d\n", totalRollers);
+        printf("Rollers with no breakdowns: %d\n", noBreakdownsRollers);
+        printf("Percentage of Rollers with no breakdowns: %.2f%%\n",
+            (float)noBreakdownsRollers / totalRollers * 100);
+    }
+
+    //crane statistics
+    if (totalCrane > 0) {
+        printf("\nCrane: %d\n", totalCrane);
+        printf("Crane machines with no breakdowns: %d\n", noBreakdownsCrane);
+        printf("Percentage of Crane machines with no breakdowns: %.2f%%\n",
+            (float)noBreakdownsCrane / totalCrane * 100);
+    }
+
+    //mixer statistics
+    if (totalMixers > 0) {
+        printf("\nMixers: %d\n", totalMixers);
+        printf("Mixers with no breakdowns: %d\n", noBreakdownsMixers);
+        printf("Percentage of Mixers with no breakdowns: %.2f%%\n",
+            (float)noBreakdownsMixers / totalMixers * 100);
+    }
 
 
 
