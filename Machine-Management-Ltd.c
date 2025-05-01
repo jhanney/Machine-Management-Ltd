@@ -220,6 +220,26 @@ void displayDetails(Machine* head) {
 
 }
 
+void generateStatistics(Machine* head) {
+    int totalMachines = 0; 
+    int noBreakdowns = 0; 
+
+    Machine* temp = head; 
+
+    while (temp != NULL) {
+        totalMachines++; //if temp is not null increment machine count
+        if (temp->breakdownsThisYear == 0) {
+            noBreakdowns++; //increment if no breakdowns counted
+        }
+        temp = temp->next; //move to the next machine in the list
+    }
+
+    //print message if no machines found 
+    if (totalMachines == 0) {
+        printf("No machines found, unable to generate statistics");
+    }
+}
+
 void main()
 {
 	int choice = 0; 
