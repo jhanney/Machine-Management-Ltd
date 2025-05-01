@@ -73,15 +73,57 @@ void addMachine(Machine** head) {
     int typecChoice;
     printf("Enter your choice (1-5): ");
     scanf("%d", &typecChoice); 
+    //swicth statement to track choice 
+    switch (typecChoice) {
+        //assign typechoice to machine string
+    case 1: 
+        strcpy(newMachine->machineType, "Tractor"); 
+        break;
+    case 2: 
+        strcpy(newMachine->machineType, "Excavator"); 
+        break;
+    case 3: 
+        strcpy(newMachine->machineType, "Roller");
+        break;
+    case 4: 
+        strcpy(newMachine->machineType, "Crane"); 
+        break;
+    case 5: 
+        strcpy(newMachine->machineType, "Mixer"); 
+        break;
+    default: printf("Invalid choice, defaulting to Tractor.\n"); strcpy(newMachine->machineType, "Tractor"); break;
+    }
 
 
 
-
+    //breakdown frequency 
     printf("Enter breakdown count this year: ");
     scanf("%d", &newMachine->breakdownsThisYear);
+    printf("1) Never\n2) Less than three times\n3) Less than five times\n4) More than five times\n");
+    int breakdownChoice;
+    printf("Enter your choice (1-4): ");
+    scanf("%d", &breakdownChoice);
+    //switch statement for breakdown choice 
+    switch (breakdownChoice) {
+    case 1: 
+        newMachine->breakdownsThisYear = 0; 
+        break; //never
+    case 2: 
+        newMachine->breakdownsThisYear = 1; 
+        break; //less than three times
+    case 3: newMachine->breakdownsThisYear = 2; 
+        break; //less than five times
+    case 4: 
+        newMachine->breakdownsThisYear = 3; 
+        break; //more than five times
+    default: printf("Invalid choice, defaulting to Never (0).\n"); newMachine->breakdownsThisYear = 0; break;
+    }
 
-    //insert new machine at begginning 
-    newMachine->next = *head; 
+    //insert new machine at the beginning
+    newMachine->next = *head;
+    if (*head != NULL) {
+        (*head)->prev = newMachine; //set the prev pointer of the old head
+    }
     *head = newMachine; 
 }
 
