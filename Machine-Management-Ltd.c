@@ -65,8 +65,18 @@ void addMachine(Machine** head) {
     scanf("%s", newMachine->ownerEmail);
     printf("Enter owner phone number: ");
     scanf("%s", newMachine->ownerPhoneNumber);
+
+    //add machine type
     printf("Enter machine type (e.g., Tractor): ");
     scanf("%s", newMachine->machineType);
+    printf("1) Tractor\n2) Excavator\n3) Roller\n4) Crane\n5) Mixer\n");
+    int typecChoice;
+    printf("Enter your choice (1-5): ");
+    scanf("%d", &typecChoice); 
+
+
+
+
     printf("Enter breakdown count this year: ");
     scanf("%d", &newMachine->breakdownsThisYear);
 
@@ -238,6 +248,15 @@ void generateStatistics(Machine* head) {
     if (totalMachines == 0) {
         printf("No machines found, unable to generate statistics");
     }
+
+    printf("Total machines: %d\n", noBreakdowns);
+
+    //num of machines with no breakdowns
+    printf("Number of machines with no breakdowns: %d\n", noBreakdowns);
+
+    //get the percentage of machines with no breakdowns
+    //formula (moBreakdown / totalMachines) * 100
+    printf("Percentage of machines with no breakdowns: %.2f%%\n", (float)noBreakdowns / totalMachines * 100); 
 }
 
 void main()
@@ -279,7 +298,7 @@ void main()
 
         case 3:
             printf("\nDisplay machine details selected\n");
-            //implement displayMachineDetails() function here
+            displayDetails(head); 
             break;
 
         case 4:
@@ -294,7 +313,7 @@ void main()
 
         case 6:
             printf("\nGenerate statistics selected\n");
-            //implement generateStatistics() function here
+            generateStatistics(head); 
             break;
 
         case 7:
