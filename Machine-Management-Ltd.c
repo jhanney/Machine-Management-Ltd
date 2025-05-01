@@ -3,35 +3,47 @@
 #include<stdlib.h>
 #include <string.h>
 
+#define MAX_CHASSIS_LENGTH 20
+#define MAX_MAKE_LENGTH 30
+#define MAX_MODEL_LENGTH 30
+#define MAX_OWNER_NAME_LENGTH 50
+#define MAX_OWNER_EMAIL_LENGTH 50
+#define MAX_OWNER_PHONE_LENGTH 20
+#define MAX_MACHINE_TYPE_LENGTH 20
+
 //forward declarartion, i was getting an identifier error 2061
 //only resolved when i did this
 typedef struct Machine Machine;
 
 //machine struct
  struct Machine{
-    char chassisNumber[20];  //unique chassis number
-    char make[30];
-    char model[30];
+    char chassisNumber[MAX_CHASSIS_LENGTH];  //unique chassis number
+    char make[MAX_MAKE_LENGTH];
+    char model[MAX_MODEL_LENGTH];
     int yearOfManufacture;
     float cost;
     float currentValuation;
     int currentMileage;
     int nextServiceMileage;
-    char ownerName[50];
-    char ownerEmail[50];
-    char ownerPhoneNumber[20];
-    char machineType[20]; // e.g., Tractor, Excavator
+    char ownerName[MAX_OWNER_NAME_LENGTH];
+    char ownerEmail[MAX_OWNER_EMAIL_LENGTH];
+    char ownerPhoneNumber[MAX_OWNER_PHONE_LENGTH];
+    char machineType[MAX_MACHINE_TYPE_LENGTH]; // e.g., Tractor, Excavator
     int breakdownsThisYear;
     Machine* next;  //pointer to the next machine in the list
     Machine* prev; //points to previous machine in the list 
 };
 
+
 //functiion to add new machine 
 void addMachine(Machine** head) {
     Machine* newMachine = (Machine*)malloc(sizeof(Machine)); //create space for new machine
 
+
+
     printf("Enter chasis number: ");
     scanf("%s", newMachine->chassisNumber); 
+
 
     //identify if chasis number is unique
     Machine* tmp = *head; 
@@ -128,7 +140,7 @@ void addMachine(Machine** head) {
 }
 
 //method to display all machines 
-void displayAll(Machine* head) {
+void displayAll(Machine* head, FILE* reportFile) {
     Machine* temp = head; //create temmp node at beginning 
     while (temp != NULL) {
         printf("\nChassis Number: %s\n", temp->chassisNumber);
@@ -144,6 +156,23 @@ void displayAll(Machine* head) {
         printf("Owner Phone: %s\n", temp->ownerPhoneNumber);
         printf("Machine Type: %s\n", temp->machineType);
         printf("Breakdowns This Year: %d\n", temp->breakdownsThisYear);
+
+        //print to file 
+        fprintf(reportFile, "Chassis Number: %s\n", temp->chassisNumber);
+        fprintf(reportFile, "Make: %s\n", temp->make);
+        fprintf(reportFile, "Model: %s\n", temp->model);
+        fprintf(reportFile, "Year of Manufacture: %d\n", temp->yearOfManufacture);
+        fprintf(reportFile, "Cost: %.2f\n", temp->cost);
+        fprintf(reportFile, "Current Valuation: %.2f\n", temp->currentValuation);
+        fprintf(reportFile, "Current Mileage: %d\n", temp->currentMileage);
+        fprintf(reportFile, "Next Service Mileage: %d\n", temp->nextServiceMileage);
+        fprintf(reportFile, "Owner Name: %s\n", temp->ownerName);
+        fprintf(reportFile, "Owner Email: %s\n", temp->ownerEmail);
+        fprintf(reportFile, "Owner Phone: %s\n", temp->ownerPhoneNumber);
+        fprintf(reportFile, "Machine Type: %s\n", temp->machineType);
+        fprintf(reportFile, "Breakdowns This Year: %d\n\n", temp->breakdownsThisYear);
+
+
         temp = temp->next;
     }
 }
@@ -382,7 +411,7 @@ void printReport(Machine* head) {
     // Write header to the file
     fprintf(reportFile, "=== Machinery Report ===\n\n");
         //print machine details to file
-    displayAll(head); 
+    displayAll(head, reportFile); 
 
     // Print performance statistics to the file
     fprintf(reportFile, "\n=== Performance Statistics Based on Machine Type ===\n");
@@ -428,7 +457,7 @@ void main()
 
         case 2:
             printf("\nDisplay all machines selected\n");
-            displayAll(head);
+            displayAll(head, stdout); //stdout writes info the the console
             break;
 
         case 3:

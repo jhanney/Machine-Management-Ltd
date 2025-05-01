@@ -1,4 +1,18 @@
 === Machinery Report ===
 
+Chassis Number: 1
+Make: 1
+Model: 1
+Year of Manufacture: 1
+Cost: 11.00
+Current Valuation: 1.00
+Current Mileage: 1
+Next Service Mileage: 1
+Owner Name: 1
+Owner Email: 1
+Owner Phone: 1
+Machine Type: Tractor
+Breakdowns This Year: 0
+
 
 === Performance Statistics Based on Machine Type ===
