@@ -285,26 +285,49 @@ void generateStatistics(Machine* head) {
 
     while (temp != NULL) {
         totalMachines++; //if temp is not null increment machine count
-        //if (temp->breakdownsThisYear == 0) {
-        //    noBreakdowns++; //increment if no breakdowns counted
-        //}
 
+        //check machine type and increment statistics
+        if (strcmp(temp->machineType, "Tractor") == 0) {
+            totalTractors++;
+            if (temp->breakdownsThisYear == 0) {
+                noBreakdownsTractors++;
+            }
+        }
+        else if (strcmp(temp->machineType, "Excavator") == 0) {
+            totalExcavators++;
+            if (temp->breakdownsThisYear == 0) {
+                noBreakdownsExcavators++;
+            }
+        }
+        else if (strcmp(temp->machineType, "Roller") == 0) {
+            totalRollers++;
+            if (temp->breakdownsThisYear == 0) {
+                noBreakdownsRollers++;
+            }
+        }
+        else if (strcmp(temp->machineType, "Crane") == 0) {
+            totalCrane++;
+            if (temp->breakdownsThisYear == 0) {
+                noBreakdownsCrane++;
+            }
+        }
+        else if (strcmp(temp->machineType, "Mixer") == 0) {
+            totalMixers++;
+            if (temp->breakdownsThisYear == 0) {
+                noBreakdownsMixers++;
+            }
+        }
         temp = temp->next; //move to the next machine in the list
     }
+
+
+
+
 
     //print message if no machines found 
     if (totalMachines == 0) {
         printf("No machines found, unable to generate statistics");
     }
-
-    printf("Total machines: %d\n", noBreakdowns);
-
-    //num of machines with no breakdowns
-    printf("Number of machines with no breakdowns: %d\n", noBreakdowns);
-
-    //get the percentage of machines with no breakdowns
-    //formula (moBreakdown / totalMachines) * 100
-    printf("Percentage of machines with no breakdowns: %.2f%%\n", (float)noBreakdowns / totalMachines * 100); 
 }
 
 void main()
