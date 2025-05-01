@@ -187,6 +187,39 @@ void deleteMachine(Machine** head)
     printf("Error: Machine with chassis number %s not found.\n", chasisToDelete);
 }
 
+//display a specific machines details 
+void displayDetails(Machine* head) {
+    char chassis[20];
+    printf("Enter chassis number to display details of: ");
+    scanf("%s", chassis); 
+
+
+    Machine* temp = head;  
+
+    while (temp != NULL) {
+        if (strcmp(temp->chassisNumber, chassis) == 0) {
+            // Display the machine details
+            printf("\nChassis Number: %s\n", temp->chassisNumber);
+            printf("Make: %s\n", temp->make);
+            printf("Model: %s\n", temp->model);
+            printf("Year of Manufacture: %d\n", temp->yearOfManufacture);
+            printf("Cost: %.2f\n", temp->cost);
+            printf("Current Valuation: %.2f\n", temp->currentValuation);
+            printf("Current Mileage: %d\n", temp->currentMileage);
+            printf("Next Service Mileage: %d\n", temp->nextServiceMileage);
+            printf("Owner: %s\n", temp->ownerName);
+            printf("Owner Email: %s\n", temp->ownerEmail);
+            printf("Owner Phone: %s\n", temp->ownerPhoneNumber);
+            printf("Machine Type: %s\n", temp->machineType);
+            printf("Breakdowns This Year: %d\n", temp->breakdownsThisYear);
+            return;
+        }
+        temp = temp->next; 
+    }
+    printf("Machine with chassis number %s not found!\n", chassis);
+
+}
+
 void main()
 {
 	int choice = 0; 
