@@ -68,7 +68,7 @@ void addMachine(Machine** head) {
 
     //add machine type
     printf("Enter machine type (e.g., Tractor): ");
-    scanf("%s", newMachine->machineType);
+    /*scanf("%s", newMachine->machineType);*/
     printf("1) Tractor\n2) Excavator\n3) Roller\n4) Crane\n5) Mixer\n");
     int typecChoice;
     printf("Enter your choice (1-5): ");
@@ -273,16 +273,22 @@ void displayDetails(Machine* head) {
 }
 
 void generateStatistics(Machine* head) {
-    int totalMachines = 0; 
-    int noBreakdowns = 0; 
+    int totalTractors = 0, noBreakdownsTractors = 0;
+    int totalExcavators = 0, noBreakdownsExcavators = 0;
+    int totalRollers = 0, noBreakdownsRollers = 0;
+    int totalCrane = 0, noBreakdownsCrane = 0;
+    int totalMixers = 0, noBreakdownsMixers = 0;
 
+
+    int totalMachines = 0; 
     Machine* temp = head; 
 
     while (temp != NULL) {
         totalMachines++; //if temp is not null increment machine count
-        if (temp->breakdownsThisYear == 0) {
-            noBreakdowns++; //increment if no breakdowns counted
-        }
+        //if (temp->breakdownsThisYear == 0) {
+        //    noBreakdowns++; //increment if no breakdowns counted
+        //}
+
         temp = temp->next; //move to the next machine in the list
     }
 
