@@ -380,7 +380,18 @@ void printReport(Machine* head) {
     }
 
     // Write header to the file
-    fprintf(reportFile, "=== Machinery Report ===\n\n"); 
+    fprintf(reportFile, "=== Machinery Report ===\n\n");
+        //print machine details to file
+    displayAll(head); 
+
+    // Print performance statistics to the file
+    fprintf(reportFile, "\n=== Performance Statistics Based on Machine Type ===\n");
+    generateStatistics(head);  // This will print statistics to the file
+
+    // Close the file after writing all data
+    fclose(reportFile);
+    printf("Report generated and saved to 'machine_report.txt'.\n"); 
+    
 }
 
 void main()
@@ -442,7 +453,7 @@ void main()
 
         case 7:
             printf("\nPrint report selected\n");
-            //implement printReport() function here
+            printReport(head);
             break;
 
         case 8:
