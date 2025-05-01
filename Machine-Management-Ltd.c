@@ -371,6 +371,18 @@ void generateStatistics(Machine* head) {
     }
 }
 
+void printReport(Machine* head) {
+    //open file in write mode
+    FILE* reportFile = fopen("machine_report.txt", "w");
+    if (reportFile == NULL) {
+        printf("Error opening file for writing!\n");
+        return;
+    }
+
+    // Write header to the file
+    fprintf(reportFile, "=== Machinery Report ===\n\n"); 
+}
+
 void main()
 {
 	int choice = 0; 
