@@ -1,10 +1,24 @@
 === Machinery Report ===
 
+Chassis Number: 2
+Make: 2
+Model: 2
+Year of Manufacture: 2
+Cost: 2.00
+Current Valuation: 2.00
+Current Mileage: 2
+Next Service Mileage: 2
+Owner Name: 2
+Owner Email: 2
+Owner Phone: 2
+Machine Type: Excavator
+Breakdowns This Year: 1
+
 Chassis Number: 1
 Make: 1
 Model: 1
 Year of Manufacture: 1
-Cost: 11.00
+Cost: 1.00
 Current Valuation: 1.00
 Current Mileage: 1
 Next Service Mileage: 1
@@ -16,3 +30,11 @@ Breakdowns This Year: 0
 
 
 === Performance Statistics Based on Machine Type ===
+
+Tractors: 1
+Tractors with no breakdowns: 1
+Percentage of Tractors with no breakdowns: 100.00%
+
+Excavators: 1
+Excavators with no breakdowns: 0
+Percentage of Excavators with no breakdowns: 0.00%

@@ -301,7 +301,7 @@ void displayDetails(Machine* head) {
 
 }
 
-void generateStatistics(Machine* head) {
+void generateStatistics(Machine* head, FILE* reportFile) {
     int totalTractors = 0, noBreakdownsTractors = 0;
     int totalExcavators = 0, noBreakdownsExcavators = 0;
     int totalRollers = 0, noBreakdownsRollers = 0;
@@ -355,40 +355,62 @@ void generateStatistics(Machine* head) {
     //tractor statistcis 
     if (totalTractors > 0) {
         printf("\nTractors: %d\n", totalTractors);
+        fprintf(reportFile, "\nTractors: %d\n", totalTractors);//prints to file
         printf("Tractors with no breakdowns: %d\n", noBreakdownsTractors);
+        fprintf(reportFile, "Tractors with no breakdowns: %d\n", noBreakdownsTractors); 
         printf("Percentage of Tractors with no breakdowns: %.2f%%\n",
             (float)noBreakdownsTractors / totalTractors * 100);
+        fprintf(reportFile, "Percentage of Tractors with no breakdowns: %.2f%%\n",
+            (float)noBreakdownsTractors / totalTractors * 100); 
     }
 
     //excavator statistics
     if (totalExcavators > 0) {
         printf("\nExcavators: %d\n", totalExcavators);
+        fprintf(reportFile, "\nExcavators: %d\n", totalExcavators);
         printf("Excavators with no breakdowns: %d\n", noBreakdownsExcavators);
+        fprintf(reportFile, "Excavators with no breakdowns: %d\n", noBreakdownsExcavators);
         printf("Percentage of Excavators with no breakdowns: %.2f%%\n",
+            (float)noBreakdownsExcavators / totalExcavators * 100);
+        fprintf(reportFile, "Percentage of Excavators with no breakdowns: %.2f%%\n",
             (float)noBreakdownsExcavators / totalExcavators * 100);
     }
 
     //Roller statistics
     if (totalRollers > 0) {
         printf("\nRollers: %d\n", totalRollers);
+        fprintf(reportFile, "\nRollers: %d\n", totalRollers);
+
         printf("Rollers with no breakdowns: %d\n", noBreakdownsRollers);
+        fprintf(reportFile, "Rollers with no breakdowns: %d\n", noBreakdownsRollers);
         printf("Percentage of Rollers with no breakdowns: %.2f%%\n",
+            (float)noBreakdownsRollers / totalRollers * 100);
+        fprintf(reportFile, "Percentage of Rollers with no breakdowns: %.2f%%\n",
             (float)noBreakdownsRollers / totalRollers * 100);
     }
 
     //crane statistics
     if (totalCrane > 0) {
         printf("\nCrane: %d\n", totalCrane);
+        fprintf(reportFile, "\nCrane: %d\n", totalCrane);
+
         printf("Crane machines with no breakdowns: %d\n", noBreakdownsCrane);
+        fprintf(reportFile, "Crane machines with no breakdowns: %d\n", noBreakdownsCrane);
         printf("Percentage of Crane machines with no breakdowns: %.2f%%\n",
+            (float)noBreakdownsCrane / totalCrane * 100);
+        fprintf(reportFile, "Percentage of Crane machines with no breakdowns: %.2f%%\n",
             (float)noBreakdownsCrane / totalCrane * 100);
     }
 
     //mixer statistics
     if (totalMixers > 0) {
         printf("\nMixers: %d\n", totalMixers);
+        fprintf(reportFile, "\nMixers: %d\n", totalMixers);
         printf("Mixers with no breakdowns: %d\n", noBreakdownsMixers);
+        fprintf(reportFile, "Mixers with no breakdowns: %d\n", noBreakdownsMixers);
         printf("Percentage of Mixers with no breakdowns: %.2f%%\n",
+            (float)noBreakdownsMixers / totalMixers * 100);
+        fprintf(reportFile, "Percentage of Mixers with no breakdowns: %.2f%%\n",
             (float)noBreakdownsMixers / totalMixers * 100);
     }
 
@@ -397,6 +419,8 @@ void generateStatistics(Machine* head) {
     //print message if no machines found 
     if (totalMachines == 0) {
         printf("No machines found, unable to generate statistics");
+        fprintf(reportFile, "No machines found, unable to generate statistics");
+
     }
 }
 
@@ -415,7 +439,7 @@ void printReport(Machine* head) {
 
     // Print performance statistics to the file
     fprintf(reportFile, "\n=== Performance Statistics Based on Machine Type ===\n");
-    generateStatistics(head);  // This will print statistics to the file
+    generateStatistics(head, reportFile);  // This will print statistics to the file
 
     // Close the file after writing all data
     fclose(reportFile);
@@ -477,7 +501,7 @@ void main()
 
         case 6:
             printf("\nGenerate statistics selected\n");
-            generateStatistics(head); 
+            generateStatistics(head, stdout); 
             break;
 
         case 7:
