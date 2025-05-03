@@ -94,6 +94,7 @@ typedef struct Machine Machine;
      scanf("%6s", enteredUsername); 
 
     
+     getchar(); 
      printf("Enter password: ");
      getPassword(enteredPassword);
 
@@ -645,6 +646,33 @@ void main()
 {
 	int choice = 0; 
     Machine* head = NULL; 
+
+
+    Login loginRecords[3];  //array to store login records
+
+    //read login records from the login file
+    readLoginFile(loginRecords, "login.txt");
+
+    //attempts to validate user login
+    int loggedIn = 0;
+    int attempts = 0;
+
+    //allows up to 3 login attempts
+    while (attempts < 3 && !loggedIn) {
+        if (validateLogin(loginRecords)) {
+            printf("Login successful!\n");
+            loggedIn = 1;  //successful login, set flag to true
+        }
+        else {
+            printf("Invalid username or password.\n");
+            attempts++;
+        }
+    }
+
+    if (!loggedIn) {
+        printf("Too many invalid attempts. Exiting...\n");
+        return;  //exit if login fails after 3 attempts
+    }
 
     //load machines from the file at the start of the program
     readMachinesFromFile(&head, "Fleet.txt");
