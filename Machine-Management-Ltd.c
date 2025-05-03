@@ -40,6 +40,26 @@ typedef struct Machine Machine;
      char password[7];//password (6 characters + null terminator)
  } Login;
 
+ //function will read 3 login records (username and password) from the specified file
+ void readLoginFile(Login loginRecords[3], const char* filename) {
+
+     FILE* file = fopen(filename, "r");
+     if (file == NULL) { 
+         printf("Error opening login file!\n");
+         exit(1);
+     }
+
+     //read 3 login records from the file (username and password)
+     // reads 6 characters for the username and password each, since the max length is 6 (with null terminator)
+     for (int i = 0; i < 3; i++) {
+         fscanf(file, "%6s %6s", loginRecords[i].username, loginRecords[i].password);
+     }
+
+     //close the file after reading all the records
+     fclose(file);
+ }
+
+
  //read machines from the file
  void readMachinesFromFile(Machine** head, const char* filename) {
      //open the file in read mode
