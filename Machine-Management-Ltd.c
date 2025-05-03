@@ -43,6 +43,37 @@ typedef struct Machine Machine;
          printf("Error opening file %s for reading!\n", filename);
          return;
      }
+
+     //loop to read each line of the file until the end of the file is reached
+     while (!feof(file)) {
+         //assign memory for a new Machine node
+         Machine* newMachine = (Machine*)malloc(sizeof(Machine));
+         if (newMachine == NULL) {
+             //ifmemory allocation fails, print an error message and close the file
+             printf("Memory allocation failed!\n");
+             fclose(file);
+             return;
+         }
+
+         //read machine data from the file using fscanf
+         //the format string specifies how to read each field in the line
+         if (fscanf(file, "%19[^,],%29[^,],%29[^,],%d,%f,%f,%d,%d,%49[^,],%49[^,],%19[^,]\n",
+             newMachine->make,                 //read all details
+             newMachine->chassisNumber,
+             newMachine->model,
+             &newMachine->yearOfManufacture,
+             &newMachine->cost,
+             &newMachine->currentValuation,
+             &newMachine->currentMileage,
+             &newMachine->nextServiceMileage,
+             newMachine->ownerName,
+             newMachine->ownerEmail,
+             newMachine->ownerPhoneNumber) != 11) {
+             //ff the number of fields read is not 11, it means the line is not in the expected format
+             free(newMachine); //free the allocated memory for the current machine
+             break; //exit the loop
+         }
+     }
  }
 
 
