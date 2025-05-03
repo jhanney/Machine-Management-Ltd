@@ -456,7 +456,12 @@ void listMachinesByValuation(Machine* head) {
         temp = temp->next;
     }
 
-
+    //create an array to store pointers to all machines
+        Machine** machineArray = (Machine**)malloc(count * sizeof(Machine*));
+    if (machineArray == NULL) {
+        printf("Memory allocation failed.\n");
+        return;
+    }
 
 
 }
