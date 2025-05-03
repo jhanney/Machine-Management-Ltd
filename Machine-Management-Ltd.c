@@ -34,6 +34,17 @@ typedef struct Machine Machine;
     Machine* prev; //points to previous machine in the list 
 };
 
+ //read machines from the file
+ void readMachinesFromFile(Machine** head, const char* filename) {
+     //open the file in read mode
+     FILE* file = fopen(filename, "r");
+     if (file == NULL) {
+         //if the file cannot be opened, print an error message and return
+         printf("Error opening file %s for reading!\n", filename);
+         return;
+     }
+ }
+
 
 //functiion to add new machine 
 void addMachine(Machine** head) {
@@ -427,7 +438,7 @@ void generateStatistics(Machine* head, FILE* reportFile) {
 
 void printReport(Machine* head) {
     //open file in write mode
-    FILE* reportFile = fopen("machine_report.txt", "w");
+    FILE* reportFile = fopen("Fleet.txt", "a");
     if (reportFile == NULL) {
         printf("Error opening file for writing!\n");
         return;
@@ -444,7 +455,7 @@ void printReport(Machine* head) {
 
     // Close the file after writing all data
     fclose(reportFile);
-    printf("Report generated and saved to 'machine_report.txt'.\n"); 
+    printf("Report generated and saved to 'Fleet.txt'.\n"); 
     
 }
 
@@ -577,6 +588,7 @@ void main()
 
         case 0:
             printf("\nExiting program. Goodbye!\n");
+            printReport(head); 
             break;
 
         default:

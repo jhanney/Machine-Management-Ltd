@@ -1,0 +1,22 @@
+=== Machinery Report ===
+
+Chassis Number: 55
+Make: 55
+Model: 55
+Year of Manufacture: 55
+Cost: 55.00
+Current Valuation: 55.00
+Current Mileage: 55
+Next Service Mileage: 55
+Owner Name: 55
+Owner Email: 55
+Owner Phone: 55
+Machine Type: Mixer
+Breakdowns This Year: 3
+
+
+=== Performance Statistics Based on Machine Type ===
+
+Mixers: 1
+Mixers with no breakdowns: 0
+Percentage of Mixers with no breakdowns: 0.00%
