@@ -73,7 +73,20 @@ typedef struct Machine Machine;
              free(newMachine); //free the allocated memory for the current machine
              break; //exit the loop
          }
+         //add the new machine to the linked list
+         newMachine->next = *head; //makw the new machine point to the current head of the list
+         newMachine->prev = NULL;//the new machine doesn't have a previous node 
+         if (*head != NULL) {
+             //if the list is not empty, update the previous pointer of the current head to point to the new machine
+             (*head)->prev = newMachine;
+         }
+         *head = newMachine; //update the head of the list to the new machine
      }
+     
+    
+     //close the file after reading all the data
+     fclose(file);
+     printf("Machines data has been successfully loaded from the file.\n");
  }
 
 
@@ -184,6 +197,7 @@ void addMachine(Machine** head) {
 //method to display all machines 
 void displayAll(Machine* head, FILE* reportFile) {
     Machine* temp = head; //create temmp node at beginning 
+
     while (temp != NULL) {
         printf("\nChassis Number: %s\n", temp->chassisNumber);
         printf("Make: %s\n", temp->make);
@@ -554,6 +568,9 @@ void main()
 {
 	int choice = 0; 
     Machine* head = NULL; 
+
+    //load machines from the file at the start of the program
+    readMachinesFromFile(&head, "Fleet.txt");
 
 	printf("\n=========================================\n");
 	printf("   MACHINERY MANAGEMENT FLEET SYSTEM\n");
