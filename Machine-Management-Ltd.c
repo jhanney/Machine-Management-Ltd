@@ -83,6 +83,33 @@ typedef struct Machine Machine;
      printf("\n");  // Move to the next line after the password input
  }
 
+ //function to validate user login
+//ffunction checks whether the entered username and password match any of the records
+ int validateLogin(Login loginRecords[3]) {
+     char enteredUsername[7];  //store the username and password
+     char enteredPassword[7];
+
+     //promt the user to enter their username
+     printf("Enter username: ");
+     scanf("%6s", enteredUsername); 
+
+    
+     printf("Enter password: ");
+     getPassword(enteredPassword);
+
+     //loop through the stored login records to check if the entered username and password match any record
+     for (int i = 0; i < 3; i++) {
+         //compare entered username and password with each record
+         if (strcmp(enteredUsername, loginRecords[i].username) == 0 &&
+             strcmp(enteredPassword, loginRecords[i].password) == 0) {
+             return 1;  //successful login (found a match)
+         }
+     }
+
+     //if no match is found, return 0 for invalid login
+     return 0;  //inavilid login (username or password incorrect)
+ }
+
 
  //read machines from the file
  void readMachinesFromFile(Machine** head, const char* filename) {
