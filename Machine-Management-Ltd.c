@@ -350,6 +350,7 @@ void generateStatistics(Machine* head, FILE* reportFile) {
     }
 
     //print statistics for each machine type
+    //prints to console and file 
     printf("\n=== Machinery Statistics Based on Machine Type ===\n");
 
     //tractor statistcis 
@@ -462,6 +463,16 @@ void listMachinesByValuation(Machine* head) {
         printf("Memory allocation failed.\n");
         return;
     }
+
+    //fill the array with machine pointers
+        temp = head;
+    int i = 0;
+    while (temp != NULL) {
+        machineArray[i] = temp;
+        i++;
+        temp = temp->next;
+    }
+
 
 
 }
