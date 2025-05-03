@@ -2,6 +2,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 #define MAX_CHASSIS_LENGTH 20
 #define MAX_MAKE_LENGTH 30
@@ -39,6 +40,15 @@ typedef struct Machine Machine;
      char username[7];//username (6 characters + null terminator)
      char password[7];//password (6 characters + null terminator)
  } Login;
+
+ //check if email meets requirments
+ bool isValidEmail(char* email) {
+     //check if the email contains '@' and '.' and ends with '.com'
+     if (strchr(email, '@') && strchr(email, '.') && strstr(email, ".com") != NULL) {
+         return true;
+     }
+     return false;
+ }
 
  //function will read 3 login records (username and password) from the specified file
  void readLoginFile(Login loginRecords[3], const char* filename) {
@@ -206,8 +216,22 @@ void addMachine(Machine** head) {
     scanf("%d", &newMachine->nextServiceMileage);
     printf("Enter owner name: ");
     scanf("%s", newMachine->ownerName);
-    printf("Enter owner email: ");
-    scanf("%s", newMachine->ownerEmail);
+
+
+    //get owner email and validate it
+    int emailValid = 0;
+    while (!emailValid) {
+        printf("Enter owner email: ");
+        scanf("%s", newMachine->ownerEmail);
+        if (isValidEmail(newMachine->ownerEmail)) {
+            emailValid = 1;
+        }
+        else {
+            printf("ERROR: Invalid email format. Please try again.\n");
+        }
+    }
+
+
     printf("Enter owner phone number: ");
     scanf("%s", newMachine->ownerPhoneNumber);
 
