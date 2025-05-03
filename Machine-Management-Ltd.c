@@ -485,6 +485,26 @@ void listMachinesByValuation(Machine* head) {
             }
         }
     }
+    //display the machines in the sorted order
+        printf("\n===== MACHINERY LIST SORTED BY CURRENT VALUATION =====\n");
+    for (int i = 0; i < count; i++) {
+        printf("\nChassis Number: %s\n", machineArray[i]->chassisNumber);
+        printf("Make: %s\n", machineArray[i]->make);
+        printf("Model: %s\n", machineArray[i]->model);
+        printf("Year: %d\n", machineArray[i]->yearOfManufacture);
+        printf("Cost: %.2f\n", machineArray[i]->cost);
+        printf("Current Valuation: %.2f\n", machineArray[i]->currentValuation);
+        printf("Current Mileage: %d\n", machineArray[i]->currentMileage);
+        printf("Next Service Mileage: %d\n", machineArray[i]->nextServiceMileage);
+        printf("Owner: %s\n", machineArray[i]->ownerName);
+        printf("Owner Email: %s\n", machineArray[i]->ownerEmail);
+        printf("Owner Phone: %s\n", machineArray[i]->ownerPhoneNumber);
+        printf("Machine Type: %s\n", machineArray[i]->machineType);
+        printf("Breakdowns This Year: %d\n", machineArray[i]->breakdownsThisYear);
+    }
+
+    //free the allocated memory for the machine array
+    free(machineArray);
 
 }
 
@@ -552,7 +572,7 @@ void main()
 
         case 8:
             printf("\nSort by valuation selected\n");
-            //implement sortByValuation() function here
+            listMachinesByValuation(head); 
             break;
 
         case 0:
