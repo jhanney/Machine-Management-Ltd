@@ -473,7 +473,18 @@ void listMachinesByValuation(Machine* head) {
         temp = temp->next;
     }
 
-
+    //sort the array based on current valuation in descending order
+        Machine* tempMachine;
+    for (int i = 0; i < count - 1; i++) {
+        for (int j = i + 1; j < count; j++) {
+            if (machineArray[i]->currentValuation < machineArray[j]->currentValuation) {
+                //swap the pointers if the current valuation is smaller
+                tempMachine = machineArray[i];
+                machineArray[i] = machineArray[j];
+                machineArray[j] = tempMachine;
+            }
+        }
+    }
 
 }
 
