@@ -447,6 +447,20 @@ void printReport(Machine* head) {
     
 }
 
+void listMachinesByValuation(Machine* head) {
+    //count the number of machines
+        int count = 0;
+    Machine* temp = head;
+    while (temp != NULL) {
+        count++;
+        temp = temp->next;
+    }
+
+
+
+
+}
+
 void main()
 {
 	int choice = 0; 
