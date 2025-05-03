@@ -34,6 +34,12 @@ typedef struct Machine Machine;
     Machine* prev; //points to previous machine in the list 
 };
 
+ //login structure
+ typedef struct {
+     char username[7];//username (6 characters + null terminator)
+     char password[7];//password (6 characters + null terminator)
+ } Login;
+
  //read machines from the file
  void readMachinesFromFile(Machine** head, const char* filename) {
      //open the file in read mode
