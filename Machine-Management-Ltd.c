@@ -59,6 +59,30 @@ typedef struct Machine Machine;
      fclose(file);
  }
 
+ //function to mask password input with asterisks using scanf
+     //this function hides the password input by showing asterisks (*) while the user types
+ void getPassword(char* password) {
+     char ch;
+     int i = 0;
+
+     //loop to read characters until the user types the password (max 6 characters)
+     while (i < 6) {
+         ch = getchar();  //read character from user input
+
+         //if Enter key is pressed, finish the password input
+         if (ch == '\n') {
+             password[i] = '\0';  //null-terminate the password string
+             break;
+         }
+         else {
+             password[i] = ch;  //stre the character in the password array
+             i++;  //move to the next character in the password
+             printf("*");  //display an asterisk (*) for each character typed
+         }
+     }
+     printf("\n");  // Move to the next line after the password input
+ }
+
 
  //read machines from the file
  void readMachinesFromFile(Machine** head, const char* filename) {
